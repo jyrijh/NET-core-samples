@@ -1,9 +1,9 @@
 # Database
 
-Nämä pitää ajaa ensin  
+Run these first  
 `Add-Migration Initial`  
 `Update-Database`  
-Database.SampleApp kansioon tulee school.db, laita tälle ominaisuudet copy always, jolloin kopioi aina tyhjän kannan bin\debug kansioon
+in Database.SampleApp folder school.db is created, change its properties to copy always. This will copy always empty database to bin\debug folder
 
 ## Database.SampleApp
 
