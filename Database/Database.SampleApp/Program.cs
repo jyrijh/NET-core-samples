@@ -4,19 +4,14 @@ using Database.Application;
 using Database.SampleRepository;
 
 var host = CreateHostBuilder(args).Build();
-
 using var scope = host.Services.CreateScope();
-var app = scope.ServiceProvider.GetRequiredService<App>();
-app.Run();
 
-static IHostBuilder CreateHostBuilder(string[] args)
-{
-    return Host.CreateDefaultBuilder(args)
-        .ConfigureServices((hostContext, services) =>
-        {
-            services.AddSampleRepository(hostContext.Configuration);
+scope.ServiceProvider.GetRequiredService<App>()
+    .Run();
 
-            services
-                .AddScoped<App>();
-        });
-}
+static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
+    {
+        services.AddSampleRepository(hostContext.Configuration);
+        services.AddScoped<App>();
+    });
