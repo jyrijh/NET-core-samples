@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Database.SampleRepository.Models;
 using Database.Application;
-using Database.SampleRepository;
 
 namespace Database.SampleRepository;
 

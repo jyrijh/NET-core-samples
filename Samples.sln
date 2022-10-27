@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{0BA2D2F1-ED8B-4E27-93C1-250E8C7A3B12}"
+	ProjectSection(SolutionItems) = preProject
+		Database\README.md = Database\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.SampleRepository", "Database\Database.SampleRepository\Database.SampleRepository.csproj", "{B2F7445D-46AE-4F88-8FF5-0C6D9FA34703}"
 EndProject
