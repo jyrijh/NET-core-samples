@@ -1,7 +1,7 @@
 #  Logging
 
-By using two WriteTo File outputs you can send specific logmessages to separate file.
-With `"restrictedToMinimumLevel": "Error"` LogError messages are written to both files, but everything else only to Logging.App.log
+By using two WriteTo File outputs you can send specific logmessages to separate file.  
+All logmessages are written to Logging.App.log, but LogError messages are written also to App.Errors.log with `"restrictedToMinimumLevel": "Error"`.
 
 ```csharp
 static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
