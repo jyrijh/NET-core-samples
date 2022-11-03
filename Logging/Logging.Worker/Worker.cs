@@ -11,10 +11,9 @@ public class Worker
         _logger = logger;
     }
 
-    public void Run(string file/*, string log*/)
+    public void Run(string file)
     {
          _logger.LogInformation("running {file}", file);
-        //_logger.LogInformation("logging {file}", log);
 
         _logger.LogWarning("This is warning");
         _logger.LogError("This is error");
