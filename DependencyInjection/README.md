@@ -11,11 +11,11 @@ Register worker and service for it.
 
 ```csharp
 return Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddWorker(hostContext.Configuration);
-                services.AddTransient<ISampleService, SampleService>();
-            });
+    .ConfigureServices((hostContext, services) =>
+    {
+        services.AddWorker(hostContext.Configuration);
+       services.AddTransient<ISampleService, SampleService>();
+    });
 ```
 
 ## DI.Worker
