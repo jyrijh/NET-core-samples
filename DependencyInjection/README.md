@@ -14,7 +14,7 @@ return Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
         services.AddWorker(hostContext.Configuration);
-       services.AddTransient<ISampleService, SampleService>();
+        services.AddTransient<ISampleService, SampleService>();
     });
 ```
 
