@@ -1,6 +1,7 @@
 ﻿using DI.Worker;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SomeService;
 
 namespace DI.App;
 
@@ -21,6 +22,7 @@ internal class Program
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddWorker(hostContext.Configuration);
+                services.AddTransient<ISampleService, SampleService>();
             });
     }
 }
