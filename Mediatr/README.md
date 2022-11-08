@@ -5,12 +5,12 @@ Two services are added, `ErrorService` will throw an exception. This is handled 
 
 ```csharp
 static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services
-                    .AddScoped<Worker>()
-                    .AddTransient<ISampleService, SampleService>()
-                    .AddTransient<ISampleErrorService, ErrorService>()
-                    .AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-            });
+    .ConfigureServices((hostContext, services) =>
+    {
+        services
+            .AddScoped<Worker>()
+            .AddTransient<ISampleService, SampleService>()
+             .AddTransient<ISampleErrorService, ErrorService>()
+             .AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+    });
 ```
