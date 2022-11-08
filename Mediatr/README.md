@@ -10,7 +10,7 @@ static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilde
         services
             .AddScoped<Worker>()
             .AddTransient<ISampleService, SampleService>()
-             .AddTransient<ISampleErrorService, ErrorService>()
-             .AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            .AddTransient<ISampleErrorService, ErrorService>()
+            .AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
     });
 ```
