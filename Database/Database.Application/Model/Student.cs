@@ -8,7 +8,7 @@ namespace Database.Application.Model
 {
     public class Student
     {
-        public int ID { get; init; }
+        public int? ID { get; init; }
         required public string LastName { get; init; }
         required public string FirstMidName { get; init; }
         required public DateTime EnrollmentDate { get; init; }
