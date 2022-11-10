@@ -8,7 +8,6 @@ public class TestCommandValidator : AbstractValidator<TestCommand>
 	public TestCommandValidator()
 	{
 		RuleFor(x => x.Value)
-			.NotNull()
 			.NotEmpty();
 	}
 }
