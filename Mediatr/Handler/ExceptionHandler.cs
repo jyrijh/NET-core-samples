@@ -21,22 +21,21 @@ public class ExceptionHandler<TRequest, TResponse, TException> : IRequestExcepti
         _logger.LogError(exception,"{request}", ExceptionHandler<TRequest, TResponse, TException>.GetRequestFields(request));
 
         state.SetHandled(default!);
-        //return Task.CompletedTask;
         return Task.FromException(exception);
     }
 
     private static List<(string name, string value)> GetRequestFields(object request)
     {
         PropertyInfo[] properties = request.GetType().GetProperties();
-        List<(string name, string value)> fields = new();
+        List<(string name, string value)> result = new();
 
-        foreach (var prop in properties)
-            if (prop.GetIndexParameters().Length == 0)
-                fields.Add((prop.Name, $"{prop.GetValue(request)}"));
+        foreach (var property in properties)
+            if (property.GetIndexParameters().Length == 0)
+                result.Add((property.Name, $"{property.GetValue(request)}"));
             else
-                fields.Add((prop.Name, prop.PropertyType.Name));
+                result.Add((property.Name, property.PropertyType.Name));
         
-        return fields;
+        return result;
     }
 }
 
