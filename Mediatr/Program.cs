@@ -1,4 +1,6 @@
-﻿using Mediatr.Sample.Service;
+﻿using FluentValidation;
+using Mediatr.Sample.PipelineBehavior;
+using Mediatr.Sample.Service;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,13 +21,25 @@ namespace Mediatr.Sample
             using var scope = host.Services.CreateScope();
             var worker = scope.ServiceProvider.GetRequiredService<Worker>();
 
+            await worker.SuccessAsync();
+
             try
             {
-                await worker.RunAsync();
-                await worker.RunErrorAsync();
+                await worker.ValidationFailsAsync1();
             }
-            catch(Exception)
-            { }
+            catch(Exception){ }
+
+            try
+            {
+                await worker.ValidationFailsAsync2();
+            }
+            catch (Exception) { }
+
+            try
+            {
+                await worker.ErrorAsync();
+            }
+            catch (Exception){ }
         }
 
         static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
@@ -34,8 +48,13 @@ namespace Mediatr.Sample
                 services
                     .AddScoped<Worker>()
                     .AddTransient<ISampleService, SampleService>()
-                    .AddTransient<ISampleErrorService, ErrorService>()
-                    .AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+                    .AddTransient<ISampleErrorService, ErrorService>();
+                
+                services
+                    .AddMediatR(AppDomain.CurrentDomain.GetAssemblies())
+                    .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+                services.AddValidatorsFromAssembly(typeof(Program).Assembly);
             });
     }
 }

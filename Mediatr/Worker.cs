@@ -12,23 +12,21 @@ public class Worker
         _sender = sender;
     }
 
-    public Task RunAsync()
+    private Task RunCommandAsync(string message)
     {
-        return RunCommandAsync("Hello World from Mediatr");
+        return _sender.Send(new TestCommand() { Value = message });
     }
 
-    private async Task RunCommandAsync(string message)
+    private Task RunErrorCommandAsync(string message)
     {
-        await _sender.Send(new TestCommand() { Value = message });
+        return _sender.Send(new TestErrorCommand() { Value = message });
     }
 
-    public Task RunErrorAsync()
-    {
-        return RunErrorCommandAsync("This will throw");
-    }
+    public Task SuccessAsync() => RunCommandAsync("Hello World from Mediatr");
 
-    private async Task RunErrorCommandAsync(string message)
-    {
-        await _sender.Send(new TestErrorCommand() { Value = message });
-    }
+    public Task ValidationFailsAsync1() => RunCommandAsync("");
+
+    public Task ValidationFailsAsync2() => RunCommandAsync(null);
+
+    public Task ErrorAsync() => RunErrorCommandAsync("This will throw");
 }
