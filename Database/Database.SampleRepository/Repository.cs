@@ -12,7 +12,7 @@ public class Repository : ISampleRepository
         _schoolContext = schoolContext;
     }
 
-    public Application.Model.Student AddSudent(Application.Model.Student student)
+    public Application.Model.Student AddStudent(Application.Model.Student student)
     {
         _schoolContext.Students.Add(new Student()
         {

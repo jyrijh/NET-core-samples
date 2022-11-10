@@ -11,7 +11,7 @@ public class App
 
     public void Run()
     {
-        _repository.AddSudent(new Model.Student() { FirstMidName = "john", LastName = "doe", EnrollmentDate = DateTime.Now });
+        _repository.AddStudent(new Model.Student() { FirstMidName = "john", LastName = "doe", EnrollmentDate = DateTime.Now });
 
         var students = _repository.GetStudents();
     }

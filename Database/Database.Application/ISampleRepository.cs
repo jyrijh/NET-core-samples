@@ -6,5 +6,5 @@ public interface ISampleRepository
 {
     IReadOnlyCollection<Student> GetStudents();
 
-    Student AddSudent(Student student);
+    Student AddStudent(Student student);
 }
