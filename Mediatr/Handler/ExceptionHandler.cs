@@ -18,7 +18,10 @@ public class ExceptionHandler<TRequest, TResponse, TException> : IRequestExcepti
 
     public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state, CancellationToken cancellationToken)
     {
-        _logger.LogError(exception,"{request}", ExceptionHandler<TRequest, TResponse, TException>.GetRequestFields(request));
+        if(exception is FluentValidation.ValidationException validationexception)
+            _logger.LogError(validationexception, "Validation error");
+        else
+            _logger.LogError(exception, "{request}", GetRequestFields(request));
 
         state.SetHandled(default!);
         return Task.FromException(exception);
