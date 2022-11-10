@@ -9,7 +9,7 @@ namespace Mediatr.Sample.Command;
 
 public class TestErrorCommand :IRequest<bool>
 {
-    public string Value { get; set; } = default!;
+    required public string Value { get; init; }
     public string Other { get; } = "Other value";
 }
 

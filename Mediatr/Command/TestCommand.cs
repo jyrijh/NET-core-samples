@@ -9,6 +9,6 @@ namespace Mediatr.Sample.Command;
 
 public class TestCommand : IRequest<bool>
 {
-    public string Value { get; set; } = default!;
+    required public string Value { get; init; }
 }
 

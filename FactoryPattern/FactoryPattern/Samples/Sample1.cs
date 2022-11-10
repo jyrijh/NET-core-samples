@@ -2,10 +2,10 @@
 
 public interface ISample1
 {
-    string CurrentDateTime { get; set; }
+    string CurrentDateTime { get; init; }
 }
 
 public class Sample1 : ISample1
 {
-    public string CurrentDateTime { get; set; } = DateTime.Now.ToString();
+    public string CurrentDateTime { get; init; } = DateTime.Now.ToString();
 }
