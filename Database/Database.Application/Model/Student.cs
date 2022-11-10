@@ -8,9 +8,14 @@ namespace Database.Application.Model
 {
     public class Student
     {
-        public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstMidName { get; set; }
-        public DateTime EnrollmentDate { get; set; }
+        public int ID { get; init; }
+        required public string LastName { get; init; }
+        required public string FirstMidName { get; init; }
+        required public DateTime EnrollmentDate { get; init; }
+
+        public override string ToString()
+        {
+            return $"{ID}, {FirstMidName} {LastName} {EnrollmentDate}";
+        }
     }
 }

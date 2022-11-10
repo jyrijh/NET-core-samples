@@ -11,8 +11,14 @@ public class App
 
     public void Run()
     {
-        _repository.AddStudent(new Model.Student() { FirstMidName = "john", LastName = "doe", EnrollmentDate = DateTime.Now });
+        _repository.AddStudent(new Model.Student() { FirstMidName = "John", LastName = "Doe", EnrollmentDate = DateTime.Now });
+        _repository.AddStudent(new Model.Student() { FirstMidName = "Mary", LastName = "Smith", EnrollmentDate = DateTime.Now });
 
         var students = _repository.GetStudents();
+
+        foreach (var student in students)
+        {
+            Console.WriteLine(student);
+        }
     }
 }
