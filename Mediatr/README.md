@@ -21,7 +21,7 @@ static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilde
             .AddTransient<ISampleErrorService, ErrorService>();
 
         services
-            .AddMediatR(AppDomain.CurrentDomain.GetAssemblies())
+            .AddMediatR(typeof(Program).Assembly)
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
                 
         services.AddValidatorsFromAssembly(typeof(Program).Assembly);
