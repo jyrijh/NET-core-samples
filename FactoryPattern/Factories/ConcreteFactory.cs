@@ -1,10 +1,16 @@
 ﻿using FactoryPattern.Samples;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FactoryPattern.Factories;
 
-public class GenerateClassWithDataFactory
+public static class GenerateClassWithDataFactory
 {
-
+    public static void AddGenericClassWithDataFactory(this IServiceCollection services)
+    {
+        services.AddTransient<IUserData, UserData>();
+        services.AddSingleton<Func<IUserData>>(x => () => x.GetRequiredService<IUserData>());
+        services.AddSingleton<IUserDataFactory, UserDataFactory>();
+    }
 }
 
 public interface IUserDataFactory

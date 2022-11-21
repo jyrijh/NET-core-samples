@@ -48,5 +48,6 @@ internal class Program
             services.AddScoped<Worker>();
             services.AddAbstractFactory<ISample1, Sample1>();
             services.AddAbstractFactory<ISample2, Sample2>();
+            services.AddGenericClassWithDataFactory();
         });
 }
