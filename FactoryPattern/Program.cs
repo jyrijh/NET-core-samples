@@ -49,5 +49,6 @@ internal class Program
             services.AddAbstractFactory<ISample1, Sample1>();
             services.AddAbstractFactory<ISample2, Sample2>();
             services.AddGenericClassWithDataFactory();
+            services.AddVehicleFactory();
         });
 }
