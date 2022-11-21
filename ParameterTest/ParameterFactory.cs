@@ -36,10 +36,18 @@ public class ParameterFactory : IParameterFactory
         _provider = provider;
     }
 
-    public ISomeService Create(string servicetype, string name) => servicetype switch
+    public ISomeService Create1(string servicetype, string name) => servicetype switch
     {
         "1" => (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService1), name),
         "2" => (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService2), name),
+        null => throw new ArgumentNullException(nameof(servicetype)),
+        _ => throw new ArgumentException($"Unknown {servicetype}", nameof(servicetype))
+    };
+
+    public ISomeService Create(string servicetype, string name) => servicetype switch
+    {
+        "1" => ActivatorUtilities.CreateInstance<SomeService1>(_provider, name),
+        "2" => ActivatorUtilities.CreateInstance<SomeService2>(_provider, name),
         null => throw new ArgumentNullException(nameof(servicetype)),
         _ => throw new ArgumentException($"Unknown {servicetype}", nameof(servicetype))
     };
