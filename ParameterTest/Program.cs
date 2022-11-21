@@ -7,12 +7,12 @@ namespace Parameter
     {
         static async Task Main(string[] args)
         {
-            //using var host = CreateHostBuilderDirect(args).Build();
+            // Testing garbage collection, works
             using var host = CreateHostBuilderFactory(args).Build();
 
             try
             {
-                for (int i = 0; i < 100000; i++)
+                for (int i = 0; i < 10000; i++)
                     await RunWorkerAsync(host);
             }
             catch (Exception e)

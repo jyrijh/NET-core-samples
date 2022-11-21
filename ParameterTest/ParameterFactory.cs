@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Parameter;
 
@@ -35,21 +36,13 @@ public class ParameterFactory : IParameterFactory
         _provider = provider;
     }
 
-    public ISomeService Create(string servicetype, string name)
+    public ISomeService Create(string servicetype, string name) => servicetype switch
     {
-        if (servicetype == null) throw new ArgumentNullException("type");
-
-        // Garbage collection removes these if they are out of scope
-        switch (servicetype)
-        {
-            case "1":
-                return (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService1), name);
-            case "2":
-                return (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService2), name); ;
-        }
-
-        throw new ArgumentException(nameof(servicetype));
-    }
+        "1" => (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService1), name),
+        "2" => (ISomeService)ActivatorUtilities.CreateInstance(_provider, typeof(SomeService2), name),
+        null => throw new ArgumentNullException(nameof(servicetype)),
+        _ => throw new ArgumentException($"Unknown {servicetype}", nameof(servicetype))
+    };
 }
 
 public interface ISomeService
